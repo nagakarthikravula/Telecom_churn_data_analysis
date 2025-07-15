@@ -7,4 +7,9 @@ Step-1:(Data Collection and Storing)
 -->Loaded the Dataset into the bigquery
 
 Step-2:(Data Cleaning and standardizing)
---> C
+--> Cleaned The Entire dataset
+--> Made sure that no NULL Values present
+--> No Duplicate Values Present
+--> Standardized columns wise
+
+
