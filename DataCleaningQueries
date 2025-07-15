@@ -1,0 +1,152 @@
+-- create or replace table `telecom-churn-data-analysis.telecom_dataset.telecom_churn_data` as 
+-- select 
+--   Customerid,
+--   Gender,
+--   SeniorCitizen,
+--   cast(Partner as string) as Partner,
+--   cast(Dependents as string) as Dependents,
+--   Tenure,
+--   cast(PhoneService as string) as PhoneService,
+--   MultipleLines,
+--   InternetService,
+--   OnlineSecurity,
+--   OnlineBackup,
+--   DeviceProtection,
+--   TechSupport,
+--   StreamingTV,
+--   StreamingMovies,
+--   Contract,
+--   cast(PaperlessBilling as string) as PaperlessBilling,
+--   PaymentMethod,
+--   CAST(MonthlyCharges AS FLOAT64) AS MonthlyCharges,
+--   safe_cast(nullif(Totalcharges,'') as float64) as Totalcharges,
+--   cast(Churn as string)as Churn
+--   from `telecom-churn-data-analysis.telecom_dataset.telecom_churn_data`;
+
+
+
+
+
+  select countif(Customerid is null) as null_csutomer_count,
+  countif(Gender is null) as Gende_null_count,
+  countif(SeniorCitizen is null) as null_count,
+  countif(Partner is null) as null_count,
+  countif(Dependents is null) as null_count,
+  countif(PhoneService is null) as null_count,
+  countif(MultipleLines is null) as null_count,
+  countif(InternetService is null) as null_count,
+  countif(OnlineSecurity is null) as null_count,
+  countif(OnlineBackup is null) as null_count,
+  countif(DeviceProtection is null) as null_count,
+  countif(TechSupport is null) as null_count,
+  countif(StreamingTV is null) as null_count,
+  countif(StreamingMovies is null) as null_count,
+  countif(Contract is null) as null_count,
+  countif(PaperlessBilling is null) as null_count,
+  countif(PaymentMethod is null) as null_count,
+  countif(MonthlyCharges is null) as null_count,
+  countif(Totalcharges is null) as null_count,
+  countif(Churn is null) as null_count,
+  from `telecom-churn-data-analysis.telecom_dataset.telecom_churn_data`;
+
+
+
+
+
+
+select Customerid,count(Customerid)
+from `telecom-churn-data-analysis.telecom_dataset.telecom_churn_data`
+group by Customerid having count(Customerid)>1;
+
+select partner,count(Partner)
+from `telecom-churn-data-analysis.telecom_dataset.telecom_churn_data`
+group by Partner;
+
+
+SELECT *
+FROM `telecom-churn-data-analysis.telecom_dataset.telecom_churn_data`
+WHERE SeniorCitizen NOT IN (0,1);
+
+select Dependents,count(Dependents)
+from `telecom-churn-data-analysis.telecom_dataset.telecom_churn_data`
+group by Dependents;
+
+
+select Tenure from `telecom-churn-data-analysis.telecom_dataset.telecom_churn_data` where tenure<=0;
+
+select MonthlyCharges from `telecom-churn-data-analysis.telecom_dataset.telecom_churn_data` where MonthlyCharges<=0;
+
+select Totalcharges from `telecom-churn-data-analysis.telecom_dataset.telecom_churn_data` where Totalcharges<=0;
+
+select PhoneService,count(PhoneService)
+from `telecom-churn-data-analysis.telecom_dataset.telecom_churn_data`
+group by PhoneService;
+
+
+select MultipleLines,count(MultipleLines)
+from `telecom-churn-data-analysis.telecom_dataset.telecom_churn_data`
+group by MultipleLines;
+
+UPDATE `telecom-churn-data-analysis.telecom_dataset.telecom_churn_data`
+SET  MultipleLines= 'No'
+WHERE MultipleLines = 'No phone service';
+
+
+select InternetService,count(InternetService)
+from `telecom-churn-data-analysis.telecom_dataset.telecom_churn_data`
+group by InternetService;
+
+UPDATE `telecom-churn-data-analysis.telecom_dataset.telecom_churn_data`
+SET  OnlineSecurity= 'No'
+WHERE OnlineSecurity = 'No internet service';
+
+UPDATE `telecom-churn-data-analysis.telecom_dataset.telecom_churn_data`
+SET  OnlineBackup= 'No'
+WHERE OnlineBackup = 'No internet service';
+
+UPDATE `telecom-churn-data-analysis.telecom_dataset.telecom_churn_data`
+SET  OnlineSecurity= 'No'
+WHERE OnlineSecurity = 'No internet service';
+
+
+select OnlineBackup,count(OnlineBackup)
+from `telecom-churn-data-analysis.telecom_dataset.telecom_churn_data`
+group by OnlineBackup;
+
+select DeviceProtection,count(DeviceProtection)
+from `telecom-churn-data-analysis.telecom_dataset.telecom_churn_data`
+group by DeviceProtection;
+
+UPDATE `telecom-churn-data-analysis.telecom_dataset.telecom_churn_data`
+SET  TechSupport= case when TechSupport = "No internet service" then "No" else TechSupport end,
+StreamingTV = case when StreamingTV = "No internet service" then "No" else Streamingtv end,
+StreamingMovies = case when StreamingMovies = "No internet service" then "No" else StreamingMovies end
+where true;
+
+
+select StreamingMovies,count(StreamingMovies)
+from `telecom-churn-data-analysis.telecom_dataset.telecom_churn_data`
+group by StreamingMovies;
+
+
+select Contract,count(Contract)
+from `telecom-churn-data-analysis.telecom_dataset.telecom_churn_data`
+group by Contract;
+
+select PaperlessBilling,count(PaperlessBilling)
+from `telecom-churn-data-analysis.telecom_dataset.telecom_churn_data`
+group by PaperlessBilling;
+
+
+select PaymentMethod,count(PaymentMethod)
+from `telecom-churn-data-analysis.telecom_dataset.telecom_churn_data`
+group by PaymentMethod;
+
+
+select MonthlyCharges
+from `telecom-churn-data-analysis.telecom_dataset.telecom_churn_data` where MonthlyCharges<=0;
+
+select Churn,count(Churn)
+from `telecom-churn-data-analysis.telecom_dataset.telecom_churn_data`
+group by Churn;
+
