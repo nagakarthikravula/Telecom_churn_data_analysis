@@ -1,0 +1,52 @@
+select
+round((sum(case when 
+Churn = "true" then 1 else 0 end)/count(*))*100,2) as Churn_rate_percent,round((sum(case when Churn = "false" then 1 else 0 end)/count(*))*100,2) as Retention_rate_percent 
+from `telecom-churn-data-analysis.telecom_dataset.telecom_churn_data`;
+
+select Contract,
+round((sum(case when 
+Churn = "true" then 1 else 0 end)/count(*))*100,2) as Churn_rate_percent,round((sum(case when Churn = "false" then 1 else 0 end)/count(*))*100,2) as Retention_rate_percent 
+from `telecom-churn-data-analysis.telecom_dataset.telecom_churn_data` group by Contract;
+
+-- Churn by tenure
+select Tenure,
+round((sum(case when 
+Churn = "true" then 1 else 0 end)/count(*))*100,2) as Churn_rate_percent,round((sum(case when Churn = "false" then 1 else 0 end)/count(*))*100,2) as Retention_rate_percent 
+from `telecom-churn-data-analysis.telecom_dataset.telecom_churn_data` group by Tenure order by Tenure;
+-- Churn by payment method
+select PaymentMethod,
+round((sum(case when 
+Churn = "true" then 1 else 0 end)/count(*))*100,2) as Churn_rate_percent,round((sum(case when Churn = "false" then 1 else 0 end)/count(*))*100,2) as Retention_rate_percent 
+from `telecom-churn-data-analysis.telecom_dataset.telecom_churn_data` group by PaymentMethod;
+
+-- Churn by internet service type
+select InternetService,
+round((sum(case when 
+Churn = "true" then 1 else 0 end)/count(*))*100,2) as Churn_rate_percent,round((sum(case when Churn = "false" then 1 else 0 end)/count(*))*100,2) as Retention_rate_percent 
+from `telecom-churn-data-analysis.telecom_dataset.telecom_churn_data` group by InternetService;
+-- Churn by monthly charges
+select case
+when MonthlyCharges BETWEEN 18 and 38 then "18-38"
+ WHEN MonthlyCharges > 38 AND MonthlyCharges <= 58 THEN '39-58'
+ WHEN MonthlyCharges > 58 AND MonthlyCharges <= 78 THEN '59-78'
+ WHEN MonthlyCharges > 78 AND MonthlyCharges <= 98 THEN '79-98'
+ WHEN MonthlyCharges > 98 AND MonthlyCharges <= 118 THEN '99-118'
+ ELSE '119+'
+end as CMonthly_charges,
+round((sum(case when 
+Churn = "true" then 1 else 0 end)/count(*))*100,2) as Churn_rate_percent,round((sum(case when Churn = "false" then 1 else 0 end)/count(*))*100,2) as Retention_rate_percent
+from `telecom-churn-data-analysis.telecom_dataset.telecom_churn_data`
+group by CMonthly_charges;
+
+-- Churn by senior citizen
+select
+case when SeniorCitizen = 0 then "Not_a_Senior_Citizen" else "Senior_Citizen" end as Senior_Citizen,
+round((sum(case when 
+Churn = "true" then 1 else 0 end)/count(*))*100,2) as Churn_rate_percent,round((sum(case when Churn = "false" then 1 else 0 end)/count(*))*100,2) as Retention_rate_percent
+from `telecom-churn-data-analysis.telecom_dataset.telecom_churn_data` group by Senior_Citizen;
+-- Churn by multiple lines
+select MultipleLines,
+round((sum(case when 
+Churn = "true" then 1 else 0 end)/count(*))*100,2) as Churn_rate_percent,round((sum(case when Churn = "false" then 1 else 0 end)/count(*))*100,2) as Retention_rate_percent 
+from `telecom-churn-data-analysis.telecom_dataset.telecom_churn_data` group by MultipleLines;
+
