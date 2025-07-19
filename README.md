@@ -25,3 +25,14 @@ Step-3:(Performed EDA process)
 --> EDA Queries are in EDAqueries page
 
 Step4:(Visualization based on Questions)
+--> 1.Churn_Rate by Record_Count(Table)
+--> 2.Churn_Rate and Retention_Rate by Churn(Used stacked bar chart)
+--> 3.Churn_Rate by Payment Method(Bar chart)
+--> 4.Churn_Rate by Senior_Citizen(Pie chart)
+--> 5.Churn_Rate by Internet_Service(Pie Chart)
+--> 6.Churn_Rate by Monthly_Charges($)(Bar Chart)
+--> 7.Churn_Rate by Techinical_Support
+--> 8.Churn and Retention Rate By Tenure(Line Chart)
+
+
+
