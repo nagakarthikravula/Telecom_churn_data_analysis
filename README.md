@@ -35,7 +35,7 @@ Step-4:(Visualization based on Questions)
 --> 8.Churn and Retention Rate By Tenure(Line Chart)
 
 Step-5:(Dashboard)
-[Dashboar_link](https://lookerstudio.google.com/reporting/aca1b378-af27-4014-8a31-4ce62b9abd38)
+[Dashboard_link](https://lookerstudio.google.com/reporting/aca1b378-af27-4014-8a31-4ce62b9abd38)
 
 Step-6:(Key Insights & Recomendations)
 **Contract Type:**
